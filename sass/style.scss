@@ -2,22 +2,32 @@
 @use "_fonts";
 @use "_vars" as *;
 @use "_mixins" as *;
+@use "_components";
 
-[class*='__container'] {
-    max-width: toRem(1305);
-    margin: 0 auto;
-    padding-inline: toRem(15);
-}
-
+// ------------------------------------------------------------------------------------------
+// BODY
+// ------------------------------------------------------------------------------------------
 body {
     font-family: 'Montserrat', sans-serif;
     background: rgba(48, 44, 66, 1);
+    font-size: toRem(14);
+    font-weight: 700;
+    color: #FFF;
 
     &.scroll-lock {
         overflow: hidden;
         touch-action: none;
         overscroll-behavior: none;
     }
+}
+
+// ------------------------------------------------------------------------------------------
+// CONTAINER
+// ------------------------------------------------------------------------------------------
+[class*='__container'] {
+    max-width: toRem(1305);
+    margin: 0 auto;
+    padding-inline: toRem(15);
 }
 
 // ------------------------------------------------------------------------------------------
@@ -37,7 +47,28 @@ body {
 // HEADER
 // ------------------------------------------------------------------------------------------
 .header {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    transition: background-color .3s, padding .3s;
+    padding-bottom: toRem(20);
+    z-index: 50;
+
+    @include adaptiveValue("padding-top", 50, 20);
+
+    &--scrolled {
+        background-color: rgba(0, 0, 0, 0.8);
+
+        @include adaptiveValue("padding-top", 25, 20);
+
+        .header__logo img {
+            width: toRem(120);
+
+            @include adaptiveValue("width", 120, 80);
+
+        }
+    }
 
     &__wrapper {
         display: flex;
@@ -45,21 +76,55 @@ body {
         justify-content: space-between;
         gap: toRem(20);
 
-        @include adaptiveValue("padding-top", 50, 20);
-        @include adaptiveValue("padding-bottom", 30, 20);
     }
 
     &__logo {
         flex-shrink: 0;
+
+        @include adaptiveValue("width", 193, 150);
+        @include adaptiveValue("margin-right", 75, 0, 0, 1440, 1000);
+
+        img {
+            transition: all .3s;
+            width: 100%;
+        }
     }
 
     &__nav {
-        flex-shrink: 0;
+        z-index: 10;
+
+        @media (max-width:toEm(985)) {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            height: 100%;
+            width: 100%;
+        }
     }
 
     &__actions {
         display: flex;
         @include adaptiveValue("gap", 38, 15, 0, 1100, 900);
+
+        @media (max-width:toEm(650)) {
+            display: none;
+
+            &--loaded {
+                display: flex;
+            }
+
+            &--dynamic {
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                gap: toRem(30);
+
+                .btn {
+                    padding: toRem(25) toRem(40);
+                }
+
+            }
+        }
     }
 
     &__burger {
@@ -71,190 +136,77 @@ body {
     }
 }
 
-// ------------------------------------------------------------------------------------------
-// LOGO
-// ------------------------------------------------------------------------------------------
-.logo {}
+.intro {
+    padding-top: toRem(162);
 
-// ------------------------------------------------------------------------------------------
-// NAV
-// ------------------------------------------------------------------------------------------
-.nav {
-    transition: left .3s;
-    z-index: 10;
-
-    &__list {
+    &__wrapper {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: toRem(40);
-        @include adaptiveValue("gap", 40, 20, 0, 1100, 900);
+        gap: toRem(20);
+        justify-content: space-between;
 
-        @media (max-width:toEm(985)) {
-            flex-direction: column;
-            gap: toRem(30);
-            font-size: toRem(40);
+        @include adaptiveValue("padding-top", 98, 20);
+        @include adaptiveValue("padding-bottom", 88, 50);
+
+        @media (max-width:toEm(899.98)) {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: toRem(40);
+
         }
     }
 
-    &__item {
-        color: #fff;
-        font-size: toRem(12);
-        font-weight: 700;
-        text-transform: uppercase;
+    &__info {
+        display: flex;
+        flex-direction: column;
+        padding-top: toRem(48);
+        flex-shrink: 2;
+        gap: toRem(30);
+
+        @media (max-width:toEm(899.98)) {
+            padding: 0;
+        }
     }
 
-    &__link {}
+    &__title {
 
-    @media (max-width:toEm(985)) {
-        position: fixed;
-        top: 0;
-        left: -100%;
+        @media (min-width:toEm(900)) {
+            max-width: toRem(460);
+        }
+    }
+
+    &__decsr {
+        @media (min-width:toEm(900)) {
+            max-width: toRem(450);
+        }
+
+        &:not(:last-child) {
+            @include adaptiveValue(" margin-bottom", 36, 0);
+        }
+    }
+
+    &__btn {
+        align-self: center;
+
+        @media (min-width:toEm(900)) {
+            align-self: flex-start;
+        }
+    }
+
+    &__image-box {
+        border-radius: 50%;
+        overflow: hidden;
+        flex-basis: toRem(490);
+        border: rgba(0, 0, 0, 0.13) toRem(18) solid;
+        border-radius: 19.08% 19.08% 19.08% 45.8% / 21.97% 21.97% 21.97% 52.74%;
+
+        flex-basis: toRem(524);
+        flex-shrink: 1;
+        aspect-ratio: 524/455;
+    }
+
+    &__img {
+        width: 100%;
         height: 100%;
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-        overflow: auto;
-        padding-block: toRem(50);
-
-        &__link {
-            font-size: toRem(28);
-        }
-
-        .open-menu & {
-            left: 0;
-        }
+        object-fit: cover;
     }
-}
-
-// ------------------------------------------------------------------------------------------
-// BURGER
-// ------------------------------------------------------------------------------------------
-.burger {
-    position: relative;
-    width: toRem(33);
-    height: toRem(26);
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    flex-direction: column;
-    cursor: pointer;
-    z-index: 15;
-
-    & span,
-    &::after,
-    &::before {
-        position: absolute;
-        right: 0;
-        height: toRem(3);
-        background: $bgcForGradient;
-        background: $bgGradient;
-        border-radius: toRem(40);
-    }
-
-    & span {
-        top: 50%;
-        width: toRem(24);
-        transition: width .3s;
-    }
-
-    &::after,
-    &::before {
-        content: '';
-        width: 100%;
-        transition: width .2s, rotate .3s, top .3s, bottom .3s;
-    }
-
-    &::after {
-        bottom: 0;
-    }
-
-    &::before {
-        top: 0;
-    }
-
-    &--active {
-        & span {
-            width: 0;
-        }
-
-        &::after {
-            rotate: 45deg;
-            bottom: calc(50% - 1px);
-        }
-
-        &::before {
-            top: calc(50% - 1px);
-            rotate: -45deg
-        }
-    }
-
-    @media (any-hover: hover) and (any-pointer: fine) {
-        &:hover {
-            & span {
-                width: 100%;
-            }
-
-            &::after,
-            &::before {
-                width: toRem(24);
-            }
-        }
-    }
-
-    @media (min-width:toEm(985)) {
-        display: none;
-    }
-}
-
-// ------------------------------------------------------------------------------------------
-// BTN
-// ------------------------------------------------------------------------------------------
-.btn {
-    padding: toRem(17) toRem(40);
-    padding-block: toRem(17);
-    background: #8176AF;
-    background: linear-gradient(90deg, #8176af 0%, #c0b7e8 100%);
-    border-radius: 40px;
-    color: rgba(52, 48, 69, 1);
-    font-size: toRem(12);
-    font-weight: 700;
-    line-height: 1.25;
-    transition: outline 0.1s;
-
-    @include adaptiveValue("padding-inline", 40, 20, 0, 1100, 900);
-
-    @media (any-hover: hover) and (any-pointer: fine) {
-        &:hover {
-            outline: toRem(1) solid #fff;
-        }
-    }
-
-    &--transparent {
-        border: 2px solid #fff;
-        color: #fff;
-        background: none;
-    }
-}
-
-// ------------------------------------------------------------------------------------------
-// CIRCLE
-// ------------------------------------------------------------------------------------------
-.circle {
-    color: rgba(52, 48, 69, 1);
-    font-size: toRem(64);
-    font-weight: 700;
-    line-height: 1.21;
-    padding: toRem(10);
-    border-radius: 50%;
-    background: linear-gradient(71deg, #C0B7E8, #8176AF 100%);
-    width: toRem(159);
-    aspect-ratio: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &--small {
-        width: toRem(60);
-    }
-
 }

@@ -1,0 +1,246 @@
+@use "_vars" as *;
+@use "_mixins" as *;
+
+// ------------------------------------------------------------------------------------------
+// WRAPPER
+// ------------------------------------------------------------------------------------------
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+
+    >main {
+        flex-grow: 1;
+    }
+}
+
+// ------------------------------------------------------------------------------------------
+// LOGO
+// ------------------------------------------------------------------------------------------
+.logo {}
+
+// ------------------------------------------------------------------------------------------
+// NAV
+// ------------------------------------------------------------------------------------------
+.nav {
+    transition: left .3s;
+
+    @media (max-width:toEm(985)) {
+        background-color: rgba(0, 0, 0, 0.9);
+        overflow: auto;
+        padding-block: toRem(100);
+        display: flex;
+        flex-direction: column;
+        gap: toRem(90);
+
+        &__link {
+            font-size: toRem(28);
+        }
+
+        .open-menu & {
+            left: 0;
+        }
+    }
+
+    &__list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: toRem(40);
+        flex-wrap: wrap;
+        row-gap: toRem(40);
+
+        @include adaptiveValue(" column-gap", 40, 20, 0, 1100, 900);
+
+        @media (max-width:toEm(985)) {
+            flex-direction: column;
+            gap: toRem(30);
+            font-size: toRem(40);
+        }
+    }
+
+    &__item {
+        color: #fff;
+        font-size: toRem(12);
+        text-transform: uppercase;
+    }
+
+    &__link {}
+
+
+}
+
+// ------------------------------------------------------------------------------------------
+// BURGER
+// ------------------------------------------------------------------------------------------
+.burger {
+    position: relative;
+    width: toRem(33);
+    height: toRem(26);
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    flex-direction: column;
+    flex-shrink: 0;
+    cursor: pointer;
+    z-index: 15;
+
+    & span,
+    &::after,
+    &::before {
+        position: absolute;
+        right: 0;
+        height: toRem(3);
+        background: $bgcForGradient;
+        background: $bgGradient;
+        border-radius: toRem(40);
+    }
+
+    & span {
+        top: 50%;
+        width: toRem(24);
+        transition: width .3s;
+    }
+
+    &::after,
+    &::before {
+        content: '';
+        width: 100%;
+        transition: width .2s, rotate .3s, top .3s, bottom .3s;
+    }
+
+    &::after {
+        bottom: 0;
+    }
+
+    &::before {
+        top: 0;
+    }
+
+    &--active {
+        & span {
+            width: 0;
+        }
+
+        &::after {
+            rotate: 45deg;
+            bottom: calc(50% - 1px);
+        }
+
+        &::before {
+            top: calc(50% - 1px);
+            rotate: -45deg
+        }
+    }
+
+    @media (any-hover: hover) and (any-pointer: fine) {
+        &:hover {
+            & span {
+                width: 100%;
+            }
+
+            &::after,
+            &::before {
+                width: toRem(24);
+            }
+        }
+    }
+
+    @media (min-width:toEm(985)) {
+        display: none;
+    }
+}
+
+// ------------------------------------------------------------------------------------------
+// BTN
+// ------------------------------------------------------------------------------------------
+.btn {
+    padding-block: toRem(17);
+    background: #8176AF;
+    background: linear-gradient(90deg, #8176af 0%, #c0b7e8 100%);
+    border-radius: 40px;
+    color: rgba(52, 48, 69, 1);
+    font-size: toRem(12);
+    line-height: 1.25;
+    transition: outline 0.1s;
+    text-transform: uppercase;
+    font-weight: 700;
+
+    @include adaptiveValue("padding-inline", 40, 30);
+
+    @media (any-hover: hover) and (any-pointer: fine) {
+        &:hover {
+            outline: toRem(1) solid #fff;
+        }
+    }
+
+    &--transparent {
+        border: 2px solid #fff;
+        color: #fff;
+        background: none;
+    }
+
+    &--arrow {
+        position: relative;
+
+        &::after {
+            content: '';
+            background: url(../img/icon/arrow.svg) center/ cover no-repeat;
+            width: toRem(43);
+            height: toRem(33);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: toRem(-83);
+
+            @include adaptiveValue("right", -83, -53);
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------------------
+// DESCRIPTION
+// ------------------------------------------------------------------------------------------
+.descr {
+    font-weight: 400;
+    line-height: 1.5;
+    font-size: toRem(16);
+}
+
+// ------------------------------------------------------------------------------------------
+// CIRCLE
+// ------------------------------------------------------------------------------------------
+.circle {
+    color: rgba(52, 48, 69, 1);
+    font-size: toRem(64);
+    line-height: 1.21;
+    padding: toRem(10);
+    border-radius: 50%;
+    background: linear-gradient(71deg, #C0B7E8, #8176AF 100%);
+    width: toRem(159);
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--small {
+        width: toRem(60);
+    }
+
+}
+
+.title {
+    &--capitalize {
+        text-transform: capitalize;
+        line-height: 1.4;
+        @include adaptiveValue("font-size", 40, 26);
+
+        span {
+            @include adaptiveValue("font-size", 46, 32);
+            background: $bgGradient;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+    }
+}
