@@ -1,4 +1,5 @@
 'use strict'
+import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.mjs'
 
 window.addEventListener('load', windowLoaded)
 window.addEventListener('scroll', toggleHeaderOnScroll)
@@ -23,16 +24,16 @@ function menuClickListener(e) {
 
 function addClassesForMenu(targetElement) {
     targetElement.closest('.header__burger').classList.toggle('burger--active')
-    document.body.classList.toggle('scroll-lock')
-    document.documentElement.classList.toggle('open-menu')
+    document.body.classList.add('scroll-lock')
+    document.documentElement.classList.add('open-menu')
 }
 
 function removeClassesForMenu() {
     const burger = document.querySelector('.burger')
 
     burger.classList.remove('burger--active')
-    document.body.classList.toggle('scroll-lock')
-    document.documentElement.classList.toggle('open-menu')
+    document.body.classList.remove('scroll-lock')
+    document.documentElement.classList.remove('open-menu')
 }
 
 function moveButtons() {
@@ -73,3 +74,29 @@ function toggleHeaderOnScroll() {
         )
     }
 }
+
+const swiper = new Swiper('.swiper-banner', {
+
+    navigation: {
+        nextEl: '.contacts-banner__next-btn',
+        prevEl: '.contacts-banner__prev-btn',
+    },
+
+    breakpoints: {
+        320: {
+            loop: true,
+            slidesPerView: 1,
+        },
+        661: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+
+        },
+        991.98: {
+            slidesPerView: 3,
+            spaceBetween: 0,
+            loop: false
+
+        }
+    }
+});

@@ -70,7 +70,7 @@ body {
         }
     }
 
-    &__wrapper {
+    &__inner {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -137,21 +137,58 @@ body {
 }
 
 .intro {
-    padding-top: toRem(162);
+    overflow: hidden;
 
-    &__wrapper {
+    &__container {
+        position: relative;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+
+        &::after {
+            top: 0;
+            right: toRem(-70);
+            background: url(../img/intro/intro_decor_big.png) center / cover no-repeat;
+            max-height: toRem(845);
+            max-width: toRem(735);
+
+            @media (max-width:toEm($mobile)) {
+                right: toRem(0);
+                top: toRem(-67);
+                max-height: toRem(709);
+                max-width: toRem(617);
+            }
+        }
+
+        @media (min-width:toEm(900)) {
+            &::before {
+                bottom: 0;
+                left: 0;
+                background: url(../img/intro/intro_decor_small.png) center / cover no-repeat;
+                max-height: toRem(561);
+                max-width: toRem(238);
+            }
+        }
+    }
+
+    &__inner {
         display: flex;
         gap: toRem(20);
         justify-content: space-between;
+        @include adaptiveValue("padding-top", 247, 140, 0, 1440);
+        @include adaptiveValue("padding-bottom", 130, 50, 0, 1440);
 
-        @include adaptiveValue("padding-top", 98, 20);
-        @include adaptiveValue("padding-bottom", 88, 50);
-
-        @media (max-width:toEm(899.98)) {
-            flex-wrap: wrap;
+        @media (max-width:toEm($mobile)) {
             justify-content: center;
             gap: toRem(40);
-
+            flex-direction: column-reverse;
         }
     }
 
@@ -159,15 +196,18 @@ body {
         display: flex;
         flex-direction: column;
         padding-top: toRem(48);
-        flex-shrink: 2;
+        flex-shrink: 1;
         gap: toRem(30);
 
-        @media (max-width:toEm(899.98)) {
+        @media (max-width:toEm($mobile)) {
             padding: 0;
         }
     }
 
     &__title {
+        @media (max-width:toEm($mobile)) {
+            text-align: center;
+        }
 
         @media (min-width:toEm(900)) {
             max-width: toRem(460);
@@ -175,8 +215,11 @@ body {
     }
 
     &__decsr {
-        @media (min-width:toEm(900)) {
+        display: none;
+
+        @media (min-width:toEm($mobile)) {
             max-width: toRem(450);
+            display: block;
         }
 
         &:not(:last-child) {
@@ -187,7 +230,7 @@ body {
     &__btn {
         align-self: center;
 
-        @media (min-width:toEm(900)) {
+        @media (min-width:toEm($mobile)) {
             align-self: flex-start;
         }
     }
@@ -195,13 +238,13 @@ body {
     &__image-box {
         border-radius: 50%;
         overflow: hidden;
-        flex-basis: toRem(490);
         border: rgba(0, 0, 0, 0.13) toRem(18) solid;
-        border-radius: 19.08% 19.08% 19.08% 45.8% / 21.97% 21.97% 21.97% 52.74%;
+        border-radius: 25.66% 23.94% 21.18% 46.75%/25.66% 23.94% 21.18% 57.61%;
 
-        flex-basis: toRem(524);
-        flex-shrink: 1;
+        max-width: toRem(524);
+        flex-shrink: 2;
         aspect-ratio: 524/455;
+        align-self: center;
     }
 
     &__img {
@@ -209,4 +252,139 @@ body {
         height: 100%;
         object-fit: cover;
     }
+}
+
+.contacts-banner {
+    &__inner {
+        position: relative;
+        padding-block: toRem(25);
+        background: #3A3456;
+        background: radial-gradient(circle, rgba(58, 52, 86, 95%) 0%, rgba(33, 30, 46, 1) 100%);
+        border-radius: toRem(90);
+        overflow: clip;
+    }
+
+    &__item {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: toRem(10);
+        opacity: 0;
+        transition: opacity .3s;
+        min-height: toRem(116);
+        padding-inline: toRem(60);
+
+        &.swiper-slide-active {
+            opacity: 1;
+        }
+
+        @media (min-width:toEm($tablet)) {
+            opacity: 1;
+            padding-inline: toRem(30);
+
+
+            &:not(:last-child) {
+                &::after {
+                    background-color: rgba(192, 183, 232, 0.33);
+                    ;
+                }
+            }
+        }
+
+        @media (min-width:toEm(661)) {
+            justify-content: start;
+
+            &::after {
+                content: '';
+                width: toRem(1);
+                height: 100%;
+                background-color: transparent;
+                margin-left: auto;
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+
+            &.swiper-slide-active {
+                &::after {
+                    background-color: rgba(192, 183, 232, 0.33);
+                }
+            }
+
+            &.swiper-slide-next {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width:toEm($mobileSmall)) {
+            flex-direction: column;
+        }
+
+    }
+
+    &__img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: toRem(60);
+        aspect-ratio: 1;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: toRem(10);
+
+        @media (any-hover: hover) and (any-pointer: fine) {
+            &:hover {
+                .contacts-banner__descr {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    &__title {
+        display: none;
+
+        @media (min-width:toEm(661)) {
+            display: block;
+
+        }
+    }
+
+    &__descr {
+        font-size: 14;
+        font-weight: 400;
+        line-height: 1.5;
+
+        @media (max-width:toEm($mobileSmall)) {
+            text-align: center;
+        }
+    }
+
+    &__prev-btn,
+    &__next-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 3;
+        // aspect-ratio: 1;
+        height: 100%;
+        background: url(../img/icons/chevron.svg) center/contain no-repeat;
+
+        @include adaptiveValue("width", 40, 30, 0, $tablet, $mobile);
+    }
+
+    &__prev-btn {
+        left: toRem(11);
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    &__next-btn {
+        right: toRem(11);
+    }
+
 }

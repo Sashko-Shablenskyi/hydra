@@ -184,8 +184,7 @@
         position: relative;
 
         &::after {
-            content: '';
-            background: url(../img/icon/arrow.svg) center/ cover no-repeat;
+            background: url(../img/icons/arrow.svg) center/ cover no-repeat;
             width: toRem(43);
             height: toRem(33);
             position: absolute;
@@ -194,6 +193,11 @@
             right: toRem(-83);
 
             @include adaptiveValue("right", -83, -53);
+
+            @media (min-width:toEm($mobile)) {
+                content: '';
+
+            }
         }
     }
 }
@@ -233,14 +237,15 @@
     &--capitalize {
         text-transform: capitalize;
         line-height: 1.4;
-        @include adaptiveValue("font-size", 40, 26);
+        @include adaptiveValue("font-size", 40, 24, 0, 1440, 768);
 
         span {
-            @include adaptiveValue("font-size", 46, 32);
+            display: inline-block;
             background: $bgGradient;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: inline-block;
+
+            @include adaptiveValue("font-size", 46, 36, 0, 1440, 768);
         }
     }
 }
