@@ -75,7 +75,8 @@ function toggleHeaderOnScroll() {
     }
 }
 
-const swiper = new Swiper('.swiper-banner', {
+const swiperBanner = new Swiper('.swiper-banner', {
+    loop: true,
 
     navigation: {
         nextEl: '.contacts-banner__next-btn',
@@ -84,7 +85,6 @@ const swiper = new Swiper('.swiper-banner', {
 
     breakpoints: {
         320: {
-            loop: true,
             slidesPerView: 1,
         },
         661: {
@@ -96,7 +96,33 @@ const swiper = new Swiper('.swiper-banner', {
             slidesPerView: 3,
             spaceBetween: 0,
             loop: false
+        }
+    }
+});
 
+const swiperServices = new Swiper('.swiper-services', {
+    loop: true,
+    slidesPerView: 3,
+    spaceBetween: 10,
+
+    navigation: {
+        nextEl: '.btn__slider--next',
+        prevEl: '.btn__slider--prev',
+    },
+
+    breakpoints: {
+        320: {
+            slidesPerView: 1,
+        },
+        545: {
+            slidesPerView: 2,
+        },
+        661: {
+            slidesPerView: 3,
+        },
+        991.98: {
+            slidesPerView: 4,
+            loop: false
         }
     }
 });

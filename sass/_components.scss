@@ -15,11 +15,6 @@
 }
 
 // ------------------------------------------------------------------------------------------
-// LOGO
-// ------------------------------------------------------------------------------------------
-.logo {}
-
-// ------------------------------------------------------------------------------------------
 // NAV
 // ------------------------------------------------------------------------------------------
 .nav {
@@ -64,10 +59,6 @@
         font-size: toRem(12);
         text-transform: uppercase;
     }
-
-    &__link {}
-
-
 }
 
 // ------------------------------------------------------------------------------------------
@@ -200,6 +191,47 @@
             }
         }
     }
+
+    &--chevron-down {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: toRem(70);
+        aspect-ratio: 1;
+        padding: 0;
+
+        outline: toRem(15) solid rgba(14, 14, 14, 0.33);
+
+        img {
+            transform: rotate(90deg);
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__slider {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: toRem(44);
+        aspect-ratio: 1;
+        background: $bgGradient;
+        outline: toRem(9) solid rgba(14, 14, 14, .32);
+        border-radius: 50%;
+        position: absolute;
+        top: 45%;
+        z-index: 5;
+
+
+        &--prev {
+            left: toRem(15);
+            transform: rotate(180deg);
+        }
+
+        &--next {
+            right: toRem(15);
+        }
+    }
 }
 
 // ------------------------------------------------------------------------------------------
@@ -209,6 +241,14 @@
     font-weight: 400;
     line-height: 1.5;
     font-size: toRem(16);
+
+    &--s {
+        font-size: toRem(14);
+    }
+
+    &--xs {
+        font-size: toRem(12);
+    }
 }
 
 // ------------------------------------------------------------------------------------------
@@ -233,6 +273,9 @@
 
 }
 
+// ------------------------------------------------------------------------------------------
+// TITLE
+// ------------------------------------------------------------------------------------------
 .title {
     display: flex;
     flex-direction: column;
@@ -313,5 +356,51 @@
                 display: none;
             }
         }
+    }
+}
+
+// ------------------------------------------------------------------------------------------
+// CARD
+// ------------------------------------------------------------------------------------------
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #433D60;
+    background: radial-gradient(circle, rgba(67, 61, 96, 1) 0%, rgba(33, 30, 46, 1) 100%);
+    border-radius: toRem(40);
+    padding: toRem(25) toRem(25) toRem(40);
+    gap: toRem(17);
+
+    &__img {
+        border-radius: 50%;
+        border: toRem(14) solid rgba(14, 14, 14, .32);
+        overflow: hidden;
+        aspect-ratio: 1;
+        max-width: toRem(219);
+        margin-bottom: toRem(4);
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__title {
+        font-weight: 700;
+        font-size: toRem(24);
+        text-transform: uppercase;
+    }
+
+    &__devider {
+        height: toRem(1);
+        width: toRem(154);
+        background-color: rgba(192, 183, 232, 0.33);
+        margin-bottom: toRem(4);
+    }
+
+    &__descr {
+        margin-bottom: toRem(18);
     }
 }
