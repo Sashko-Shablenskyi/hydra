@@ -9,7 +9,7 @@
 // ------------------------------------------------------------------------------------------
 body {
     font-family: 'Montserrat', sans-serif;
-    background: rgba(48, 44, 66, 1);
+    background: rgb(48, 44, 66);
     font-size: toRem(14);
     font-weight: 700;
     color: #FFF;
@@ -74,6 +74,7 @@ body {
         display: flex;
         align-items: center;
         justify-content: space-between;
+
         gap: toRem(20);
 
     }
@@ -142,20 +143,20 @@ body {
 .hero {
     overflow: hidden;
 
+    &__container {
+        margin-inline: toRem(-15);
+    }
+
     &__inner {
         position: relative;
         display: flex;
         gap: toRem(20);
         justify-content: space-between;
+        padding-inline: toRem(15);
 
         @include adaptiveValue("padding-top", 247, 140, 0, 1440);
         @include adaptiveValue("padding-bottom", 130, 50, 0, 1440);
 
-        @media (max-width:toEm($mobile)) {
-            justify-content: center;
-            gap: toRem(40);
-            flex-direction: column-reverse;
-        }
 
         &::before,
         &::after {
@@ -191,6 +192,13 @@ body {
                 max-width: toRem(238);
             }
         }
+
+        @media (max-width:toEm($mobile)) {
+            justify-content: center;
+            gap: toRem(40);
+            flex-direction: column-reverse;
+        }
+
     }
 
     &__info {
@@ -243,7 +251,7 @@ body {
         border-radius: 25.66% 23.94% 21.18% 46.75%/25.66% 23.94% 21.18% 57.61%;
 
         max-width: toRem(524);
-        flex-shrink: 2;
+        flex-shrink: 1.2;
         aspect-ratio: 524/455;
         align-self: center;
     }
@@ -271,10 +279,9 @@ body {
     }
 
     &__item {
+        @include flex-center;
+
         position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         gap: toRem(10);
         opacity: 0;
         transition: opacity .3s;
@@ -330,9 +337,8 @@ body {
     }
 
     &__img {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include flex-center;
+
         flex-shrink: 0;
         width: toRem(60);
         aspect-ratio: 1;
@@ -392,50 +398,19 @@ body {
 }
 
 // ------------------------------------------------------------------------------------------
-// INTRODUCTION
-// ------------------------------------------------------------------------------------------
-.introduction,
-.build {
-    @include adaptiveValue("padding-top", 90, 59);
-    @include adaptiveValue("padding-bottom", 101, 36);
-
-    &__inner {
-        display: flex;
-        gap: toRem(30);
-        justify-content: space-between;
-
-        @media (max-width:toEm($mobile)) {
-            flex-direction: column;
-        }
-    }
-
-    &__title {
-        width: 100%;
-
-        @media (min-width:toEm($mobile)) {
-            max-width: toRem(485);
-        }
-    }
-
-    &__descr {
-        display: none;
-        width: 100%;
-
-        @media (min-width:toEm($mobile)) {
-            display: inline-block;
-            flex-shrink: .5;
-            max-width: toRem(652);
-        }
-    }
-}
-
-// ------------------------------------------------------------------------------------------
 // ABOUT
 // ------------------------------------------------------------------------------------------
 .about {
     &__inner {
         display: flex;
+        margin-right: toRem(-15);
+        padding-right: toRem(15);
+
         @include adaptiveValue("gap", 117, 51, 0, 1440, 767.98);
+
+        @media (min-width:toEm($mobile)) {
+            background: url(../img/about/about_decor.png) center/cover no-repeat;
+        }
 
         @media (max-width:toEm($mobile)) {
             flex-direction: column;
@@ -498,19 +473,17 @@ body {
 .build {
     @include adaptiveValue("padding-top", 111, 50);
     @include adaptiveValue("padding-bottom", 111, 60);
-
-    &__title {
-        @media (max-width:toEm($mobileSmall)) {
-            display: none;
-        }
-    }
 }
 
 // ------------------------------------------------------------------------------------------
 // SERVICES
 // ------------------------------------------------------------------------------------------
 .services {
-    margin-bottom: toRem(117);
+    @include adaptiveValue("padding-bottom", 117, 56, 0, 1440, 375);
+
+    @media (min-width:toEm($mobile)) {
+        background: url(../img/decoration.png) center toRem(40)/cover no-repeat;
+    }
 
     &__container {
         position: relative;
@@ -520,9 +493,34 @@ body {
         }
     }
 
+    &__wrapper {
+        position: relative;
+    }
+
     &__btn {
-        @media (min-width:toEm($tablet)) {
+        position: absolute;
+        top: 42%;
+
+        &--prev {
+            left: 0;
+        }
+
+        &--next {
+            right: 0;
+        }
+
+        @media (min-width:toEm(1050)) {
             display: none;
+        }
+
+        @media (max-width:toEm($mobile)) {
+            &--prev {
+                left: toRem(-15);
+            }
+
+            &--next {
+                right: toRem(-15);
+            }
         }
     }
 }
@@ -531,18 +529,16 @@ body {
 // TECHNOLOGIES
 // ------------------------------------------------------------------------------------------
 .technologies {
-    &__box {
-        position: relative;
-    }
 
     &__wrapper {
+        @include flex-center;
+
         position: relative;
-        min-height: toRem(303);
-        display: flex;
-        justify-content: center;
-        align-items: center;
         border-radius: 12.54% 12.54% 12.54% 12.54%/48.04% 48.04% 48.04% 48.04%;
         overflow: hidden;
+        padding: toRem(15) toRem(25);
+
+        @include adaptiveValue("min-height", 303, 163, 0, 1440, 375);
 
         &::after {
             content: '';
@@ -553,6 +549,10 @@ body {
             top: 0;
             left: 0;
             z-index: -1;
+        }
+
+        @media (max-width:toEm($mobile)) {
+            margin-bottom: toRem(15);
         }
 
         img {
@@ -567,22 +567,77 @@ body {
 
     &__title {
         text-align: center;
+
+        strong {
+            @include adaptiveValue("font-size", 36, 16, 0, 1440, 375);
+        }
+
+    }
+
+    &__circle {
+        justify-self: center;
+        margin-top: toRem(-30);
+        margin-bottom: toRem(15);
+        transform: rotate(90deg);
+
+        @media (max-width:toEm($mobile)) {
+            display: none;
+        }
+    }
+
+    &__list {
+        padding-inline: toRem(65);
+
+        &::after,
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            background-color: rgb(48, 44, 66);
+            width: toRem(60);
+            height: 100%;
+            z-index: 2;
+        }
+
+        &::after {
+            right: 0;
+        }
+
+        &::before {
+            left: 0;
+        }
+    }
+
+    &__item {
+        @include flex-center;
+
+        img {
+            @include adaptiveValue(" max-width", 256, 180);
+            width: 100%;
+        }
+
+        &--small {
+            img {
+                max-width: toRem(174);
+            }
+        }
     }
 
     &__btn {
         position: absolute;
-        bottom: -50%;
-        left: 50%;
-        transform: translate(-50%, -150%);
-        z-index: 10;
-    }
+        top: 50%;
+        translate: 0 -50%;
 
-    &__list {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: toRem(70);
-    }
+        @media (min-width:toEm($tablet)) {
+            display: none;
+        }
 
-    &__item {}
+        &--prev {
+            left: toRem(10);
+        }
+
+        &--next {
+            right: toRem(10);
+        }
+    }
 }

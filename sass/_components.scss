@@ -192,23 +192,6 @@
         }
     }
 
-    &--chevron-down {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: toRem(70);
-        aspect-ratio: 1;
-        padding: 0;
-
-        outline: toRem(15) solid rgba(14, 14, 14, 0.33);
-
-        img {
-            transform: rotate(90deg);
-            width: 100%;
-            height: 100%;
-        }
-    }
-
     &__slider {
         display: flex;
         justify-content: center;
@@ -255,22 +238,39 @@
 // CIRCLE
 // ------------------------------------------------------------------------------------------
 .circle {
-    color: rgba(52, 48, 69, 1);
-    font-size: toRem(64);
-    line-height: 1.21;
-    padding: toRem(10);
-    border-radius: 50%;
-    background: linear-gradient(71deg, #C0B7E8, #8176AF 100%);
-    width: toRem(159);
-    aspect-ratio: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 50%;
+    background-color: $bgcForGradient;
+    background: $bgGradient;
+    aspect-ratio: 1;
+    outline: toRem(9) solid rgba(14, 14, 14, 0.33);
+    width: toRem(38);
+    z-index: 10;
 
-    &--small {
-        width: toRem(60);
+    img {
+        width: 100%;
+        height: 100%;
     }
 
+    &--prev {
+        transform: rotate(180deg);
+    }
+
+    &--big {
+        font-size: toRem(64);
+        line-height: 1.21;
+        padding: toRem(10);
+        width: toRem(159);
+        color: rgba(52, 48, 69, 1);
+        outline-width: toRem(15);
+    }
+
+    &--medium {
+        outline-width: toRem(15);
+        width: toRem(60);
+    }
 }
 
 // ------------------------------------------------------------------------------------------
@@ -281,6 +281,8 @@
     flex-direction: column;
     text-transform: uppercase;
     font-size: toRem(36);
+
+    @include adaptiveValue("font-size", 36, 26, 0, 1440, 375);
 
     @media (max-width:toEm($mobile)) {
         text-align: center;
@@ -402,5 +404,42 @@
 
     &__descr {
         margin-bottom: toRem(18);
+    }
+}
+
+// ------------------------------------------------------------------------------------------
+// INFO
+// ------------------------------------------------------------------------------------------
+.info {
+    @include adaptiveValue("padding-top", 90, 59);
+    @include adaptiveValue("padding-bottom", 101, 36);
+
+    &__inner {
+        display: flex;
+        gap: toRem(30);
+        justify-content: space-between;
+
+        @media (max-width:toEm($mobile)) {
+            flex-direction: column;
+        }
+    }
+
+    &__title {
+        width: 100%;
+
+        @media (min-width:toEm($mobile)) {
+            max-width: toRem(485);
+        }
+    }
+
+    &__descr {
+        display: none;
+        width: 100%;
+
+        @media (min-width:toEm($mobile)) {
+            display: inline-block;
+            flex-shrink: .5;
+            max-width: toRem(652);
+        }
     }
 }

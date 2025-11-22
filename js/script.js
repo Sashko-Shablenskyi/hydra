@@ -102,12 +102,11 @@ const swiperBanner = new Swiper('.swiper-banner', {
 
 const swiperServices = new Swiper('.swiper-services', {
     loop: true,
-    slidesPerView: 3,
     spaceBetween: 10,
 
     navigation: {
-        nextEl: '.btn__slider--next',
-        prevEl: '.btn__slider--prev',
+        nextEl: '.services__btn--next',
+        prevEl: '.services__btn--prev',
     },
 
     breakpoints: {
@@ -115,13 +114,47 @@ const swiperServices = new Swiper('.swiper-services', {
             slidesPerView: 1,
         },
         545: {
+            spaceBetween: 10,
             slidesPerView: 2,
         },
-        661: {
+        780: {
             slidesPerView: 3,
+
+        },
+        1050: {
+            slidesPerView: 4,
+            loop: false
+        }
+    }
+});
+
+
+
+const swiperTechno = new Swiper('.swiper-technologies', {
+    loop: true,
+    slidesPerView: 4,
+
+    navigation: {
+        nextEl: '.technologies__btn--next',
+        prevEl: '.technologies__btn--prev',
+    },
+
+    breakpoints: {
+        320: {
+            spaceBetween: 20,
+            slidesPerView: 1,
+        },
+        425: {
+            spaceBetween: 30,
+            slidesPerView: 2,
+        },
+        767.98: {
+            slidesPerView: 3,
+            spaceBetween: 40,
         },
         991.98: {
             slidesPerView: 4,
+            spaceBetween: 70,
             loop: false
         }
     }
