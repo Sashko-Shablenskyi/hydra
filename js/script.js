@@ -75,12 +75,12 @@ function toggleHeaderOnScroll() {
     }
 }
 
-const swiperBanner = new Swiper('.swiper-banner', {
+const swiperBanner = new Swiper('.banner-contacts', {
     loop: true,
 
     navigation: {
-        nextEl: '.contacts-banner__next-btn',
-        prevEl: '.contacts-banner__prev-btn',
+        nextEl: '.banner-contacts__next-btn',
+        prevEl: '.banner-contacts__prev-btn',
     },
 
     breakpoints: {

@@ -861,8 +861,10 @@ body.scroll-lock {
 .hero {
   overflow: hidden;
 }
-.hero__container {
-  margin-inline: -0.9375rem;
+@media (max-width: 47.99875em) {
+  .hero__container {
+    margin-inline: -0.9375rem;
+  }
 }
 .hero__inner {
   position: relative;
@@ -1040,7 +1042,8 @@ body.scroll-lock {
   border-radius: 5.625rem;
   overflow: clip;
 }
-.contacts-banner__item {
+
+.banner-contacts__item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1058,25 +1061,25 @@ body.scroll-lock {
   min-height: 7.25rem;
   padding-inline: 3.75rem;
 }
-.contacts-banner__item.swiper-slide-active {
+.banner-contacts__item.swiper-slide-active {
   opacity: 1;
 }
 @media (min-width: 61.99875em) {
-  .contacts-banner__item {
+  .banner-contacts__item {
     opacity: 1;
     padding-inline: 1.875rem;
   }
-  .contacts-banner__item:not(:last-child)::after {
+  .banner-contacts__item:not(:last-child)::after {
     background-color: rgba(192, 183, 232, 0.33);
   }
 }
 @media (min-width: 41.3125em) {
-  .contacts-banner__item {
+  .banner-contacts__item {
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: start;
   }
-  .contacts-banner__item::after {
+  .banner-contacts__item::after {
     content: "";
     width: 0.0625rem;
     height: 100%;
@@ -1086,22 +1089,22 @@ body.scroll-lock {
     top: 0;
     right: 0;
   }
-  .contacts-banner__item.swiper-slide-active::after {
+  .banner-contacts__item.swiper-slide-active::after {
     background-color: rgba(192, 183, 232, 0.33);
   }
-  .contacts-banner__item.swiper-slide-next {
+  .banner-contacts__item.swiper-slide-next {
     opacity: 1;
   }
 }
 @media (max-width: 29.99875em) {
-  .contacts-banner__item {
+  .banner-contacts__item {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
   }
 }
-.contacts-banner__img {
+.banner-contacts__img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1116,7 +1119,7 @@ body.scroll-lock {
   width: 3.75rem;
   aspect-ratio: 1;
 }
-.contacts-banner__info {
+.banner-contacts__info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1127,25 +1130,25 @@ body.scroll-lock {
   gap: 0.625rem;
 }
 @media (any-hover: hover) and (any-pointer: fine) {
-  .contacts-banner__info:hover .contacts-banner__descr {
+  .banner-contacts__info:hover .contacts-banner__descr {
     text-decoration: underline;
   }
 }
-.contacts-banner__title {
+.banner-contacts__title {
   display: none;
 }
 @media (min-width: 41.3125em) {
-  .contacts-banner__title {
+  .banner-contacts__title {
     display: block;
     font-size: 1.5rem;
   }
 }
 @media (max-width: 29.99875em) {
-  .contacts-banner__descr {
+  .banner-contacts__descr {
     text-align: center;
   }
 }
-.contacts-banner__prev-btn, .contacts-banner__next-btn {
+.banner-contacts__prev-btn, .banner-contacts__next-btn {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -1156,27 +1159,27 @@ body.scroll-lock {
   background: url(../img/icons/chevron.svg) center/contain no-repeat;
 }
 @media (min-width: 61.99875em) {
-  .contacts-banner__prev-btn, .contacts-banner__next-btn {
+  .banner-contacts__prev-btn, .banner-contacts__next-btn {
     width: 40px;
   }
 }
 @media (min-width: 47.99875em) and (max-width: 61.99875em) {
-  .contacts-banner__prev-btn, .contacts-banner__next-btn {
+  .banner-contacts__prev-btn, .banner-contacts__next-btn {
     width: clamp(30px, -4.2848214286px  +  4.4642857143vw, 40px);
   }
 }
 @media (max-width: 47.99875em) {
-  .contacts-banner__prev-btn, .contacts-banner__next-btn {
+  .banner-contacts__prev-btn, .banner-contacts__next-btn {
     width: 30px;
   }
 }
-.contacts-banner__prev-btn {
+.banner-contacts__prev-btn {
   left: 0.6875rem;
   -webkit-transform: translateY(-50%) rotate(180deg);
       -ms-transform: translateY(-50%) rotate(180deg);
           transform: translateY(-50%) rotate(180deg);
 }
-.contacts-banner__next-btn {
+.banner-contacts__next-btn {
   right: 0.6875rem;
 }
 

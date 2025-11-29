@@ -144,7 +144,9 @@ body {
     overflow: hidden;
 
     &__container {
-        margin-inline: toRem(-15);
+        @media (max-width:toEm($mobile)) {
+            margin-inline: toRem(-15);
+        }
     }
 
     &__inner {
@@ -277,7 +279,9 @@ body {
         border-radius: toRem(90);
         overflow: clip;
     }
+}
 
+.banner-contacts {
     &__item {
         @include flex-center;
 
@@ -394,7 +398,6 @@ body {
     &__next-btn {
         right: toRem(11);
     }
-
 }
 
 // ------------------------------------------------------------------------------------------
